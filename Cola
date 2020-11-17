@@ -1,0 +1,82 @@
+package Clases;
+public class Cola 
+{
+    private Nodo Inicio,Fin;
+    String Cola = "";
+    
+    public Cola ()
+    {
+        Inicio = null;
+        Fin= null;
+    }
+    
+    public boolean ColaVacia()
+    {
+        if (Inicio == null)
+        {
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+    
+    public void Insertar (String Dato)
+    {
+        Nodo Nuevo_Nodo = new Nodo();
+        Nuevo_Nodo.Dato = Dato;
+        Nuevo_Nodo.Siguiente = null;
+        
+        if (ColaVacia())
+        {
+            Inicio = Nuevo_Nodo;
+            Fin = Nuevo_Nodo;
+        }
+        else
+        {
+            Fin.Siguiente = Nuevo_Nodo;
+            Fin = Nuevo_Nodo;
+        }
+    }
+    
+    public void Eliminar()
+    {
+        if (!ColaVacia())
+        {
+            String Dato = Inicio.Dato;
+            
+            if (Inicio == Fin)
+            {
+                Inicio = null;
+                Fin = null;
+            }
+            else
+            {
+                Inicio = Inicio.Siguiente;
+            }
+        }
+    }
+    
+    public void Mostrar()
+    {
+        Nodo Recorrido = Inicio;
+        String ColaInv = "";
+        
+        while (Recorrido != null)
+        {
+            Cola += Recorrido.Dato + " ";
+            Recorrido = Recorrido.Siguiente;
+        }
+        
+        String cadena [] = Cola.split(" ");
+        
+        for (int i = cadena.length -1; i>=0; i--)
+        {
+            ColaInv += " "+ cadena[i];
+        }
+        
+        System.out.println(ColaInv);
+        Cola = "";
+    }
+}
